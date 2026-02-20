@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskManager.Core;
 
 namespace TaskManager.Models
 {
-    internal class TaskToDo
+    internal class TaskToDo : Entity
     {
         public string Name { get; set; }
         public string Description { get; set; }

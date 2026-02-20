@@ -8,5 +8,9 @@ namespace TaskManager.Services.Auth
 {
     internal interface IAuthService
     {
+        void Register();
+        void Login();
+        void Logout();
+        void ChangePassword();
     }
 }

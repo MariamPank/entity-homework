@@ -13,7 +13,6 @@ namespace TaskManager.Services.Auth
 
         private readonly DataContext _db;
         public AuthService(DataContext db) => _db = db;
-
         public static User? CurrentUser { get; private set; } = null;
 
 
@@ -49,6 +48,45 @@ namespace TaskManager.Services.Auth
             _db.Users.Add(user);
             _db.SaveChanges();
             Console.WriteLine("User registered successfully!");
+        }
+        public void Login()
+        {
+            Console.WriteLine("Enter email: ");
+            var email = Console.ReadLine();
+
+            Console.WriteLine("Enter password: ");
+            var password = Console.ReadLine();
+
+            var user = _db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if (user == null) throw new Exception("User not found");
+            if(user != null)
+            {
+                CurrentUser = user;
+                Console.WriteLine("Logged in successfully!");
+            }
+        }
+        public void Logout()
+        {
+            CurrentUser = null;
+            Console.WriteLine("You have been logged out");
+        }
+
+        public void ChangePassword()
+        {
+            if (CurrentUser == null) throw new Exception("You should be logged in");
+
+            Console.WriteLine("Please enter old Password");
+            var oldPass = Console.ReadLine();
+
+            Console.WriteLine("Please enter new Password");
+            var newPass = Console.ReadLine();
+
+            if (oldPass != CurrentUser.Password) throw new Exception("Incorrect Password");
+            CurrentUser.Password = newPass;
+
+            _db.SaveChanges();
+            Console.WriteLine("Password changed successfully.");
         }
 
     }
