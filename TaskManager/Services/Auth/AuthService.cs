@@ -11,8 +11,7 @@ namespace TaskManager.Services.Auth
     internal class AuthService : IAuthService
     {
 
-        private readonly DataContext _db;
-        public AuthService(DataContext db) => _db = db;
+        private readonly DataContext _db = new DataContext();
         public static User? CurrentUser { get; private set; } = null;
 
 

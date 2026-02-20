@@ -11,8 +11,7 @@ namespace TaskManager.Services.ToDo
 {
     internal class ToDo : ITaskService
     {
-        private readonly DataContext _db;
-        public ToDo(DataContext db) => _db = db;
+        private readonly DataContext _db = new DataContext();
 
         public void CreateTask()
         {

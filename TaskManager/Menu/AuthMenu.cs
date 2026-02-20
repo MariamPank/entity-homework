@@ -9,7 +9,7 @@ namespace TaskManager.Menu
 {
     internal class AuthMenu
     {
-        private static readonly IAuthService _authService;
+        private static AuthService _authService = new AuthService();
 
         public static void AuthStart()
         {
