@@ -5,6 +5,10 @@ using Entity_HomeWorks_OneToOne.Models.OneToOne.StudentCard;
 using Entity_HomeWorks_OneToOne.Models.OneToOne.UserProfile;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Relationships.Models.OneToMany.CategoryProducts;
+using Relationships.Models.OneToMany.TeacherStudents;
+using Relationships.Models.OneToMany.UserOrders;
+using Relationships.Models.OneToMany.VendorAddresses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +67,28 @@ namespace Entity_HomeWorks_OneToOne.Data
                 .HasOne(u => u.Settings)
                 .WithOne(p => p.Account)
                 .HasForeignKey<Settings>(p => p.AccountId);
+
+
+            //One-to-Many
+            modelBuilder.Entity<Orders>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId);
+
+            modelBuilder.Entity<Students>()
+                .HasOne(o => o.Teacher)
+                .WithMany(u => u.Students)
+                .HasForeignKey(o => o.TeacherId);
+
+            modelBuilder.Entity<Addresses>()
+                .HasOne(o => o.Vendor)
+                .WithMany(u => u.VendorAddresses)
+                .HasForeignKey (o => o.VendorId);
+
+            modelBuilder.Entity<Products>()
+                .HasOne(o => o.Category)
+                .WithMany(u => u.Products)
+                .HasForeignKey(o => o.CategoryId);
 
         }
     }
