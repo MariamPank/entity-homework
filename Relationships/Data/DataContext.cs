@@ -5,6 +5,8 @@ using Entity_HomeWorks_OneToOne.Models.OneToOne.StudentCard;
 using Entity_HomeWorks_OneToOne.Models.OneToOne.UserProfile;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Relationships.Models.ManyToMany.Enrollment;
+using Relationships.Models.ManyToMany.OrderItem;
 using Relationships.Models.OneToMany.CategoryProducts;
 using Relationships.Models.OneToMany.TeacherStudents;
 using Relationships.Models.OneToMany.UserOrders;
@@ -17,8 +19,18 @@ using System.Threading.Tasks;
 
 namespace Entity_HomeWorks_OneToOne.Data
 {
-    public class DataContext : DbContext
+    internal class DataContext : DbContext
     {
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+
+        public DbSet<Relationships.Models.ManyToMany.Enrollment.Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=mssql-206521-0.cloudclusters.net,10100;Initial Catalog=ForExercises;User ID=mp;Password=Mp123456;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
@@ -89,6 +101,36 @@ namespace Entity_HomeWorks_OneToOne.Data
                 .HasOne(o => o.Category)
                 .WithMany(u => u.Products)
                 .HasForeignKey(o => o.CategoryId);
+
+
+            //Many-to-Many
+            modelBuilder.Entity<OrderItem>()
+                .HasKey(oi => new { oi.OrderId, oi.ProductId });
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne (o => o.Order)
+                .WithMany(oi => oi.Items)
+                .HasForeignKey(o => o.OrderId);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(p => p.Product)
+                .WithMany(oi => oi.OrderItems)
+                .HasForeignKey(p => p.ProductId);
+
+
+
+            modelBuilder.Entity<Enrollment>()
+                .HasKey(en => new { en.StudentId, en.CourseId });
+
+            modelBuilder.Entity<Enrollment>()
+                .HasOne(en => en.Course)
+                .WithMany(s => s.Enrollments)
+                .HasForeignKey(en => en.CourseId);
+
+            modelBuilder.Entity<Enrollment>()
+                .HasOne(en => en.Student)
+                .WithMany(c => c.Enrollments)
+                .HasForeignKey(en => en.StudentId);
 
         }
     }
