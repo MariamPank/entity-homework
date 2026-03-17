@@ -142,7 +142,9 @@ namespace SchoolAdmin
                 Console.WriteLine("1. create pupil");
                 Console.WriteLine("2. create class");
                 Console.WriteLine("3. asign pupil to class");
-                Console.WriteLine("4. show class with pupils");
+                Console.WriteLine("4. delete pupil");
+                Console.WriteLine("5. delete class");
+                Console.WriteLine("6. show class with pupils");
 
                 Console.Write("Enter key: ");
                 string key = Console.ReadLine();
@@ -160,6 +162,14 @@ namespace SchoolAdmin
                     AsignPupiltoClass();
                 }
                 else if (key == "4")
+                {
+                    DeletePupil();
+                }
+                else if (key == "5")
+                {
+                    DeleteClass();
+                }
+                else if (key == "6")
                 {
                     Console.Write("Enter class id: ");
                     int id = int.Parse(Console.ReadLine());
