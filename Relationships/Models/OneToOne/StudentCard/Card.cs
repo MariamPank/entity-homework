@@ -12,6 +12,6 @@ namespace Entity_HomeWorks_OneToOne.Models.OneToOne.StudentCard
         public int CardNumber { get; set; }
 
         public int StudentId { get; set; }
-        public Student Student { get; set; }
+        public StudentR Student { get; set; }
     }
 }

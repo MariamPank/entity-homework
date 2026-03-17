@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entity_HomeWorks_OneToOne.Models.OneToOne.StudentCard
 {
-    public class Student : Entity
+    public class StudentR : Entity
     {
         public string Name { get; set; }
 

@@ -41,8 +41,8 @@ namespace Entity_HomeWorks_OneToOne.Data
             modelBuilder.Entity<User>().HasKey(x => x.Id);
             modelBuilder.Entity<User>().Property(x => x.Id).ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Student>().HasKey(x => x.Id);
-            modelBuilder.Entity<Student>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<StudentR>().HasKey(x => x.Id);
+            modelBuilder.Entity<StudentR>().Property(x => x.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Person>().HasKey(x => x.Id);
             modelBuilder.Entity<Person>().Property(x => x.Id).ValueGeneratedOnAdd();
@@ -60,7 +60,7 @@ namespace Entity_HomeWorks_OneToOne.Data
                 .WithOne(p => p.User)
                 .HasForeignKey<UserProfile>(p => p.UserId);
 
-            modelBuilder.Entity<Student>()
+            modelBuilder.Entity<StudentR>()
                 .HasOne(u=>u.Card)
                 .WithOne(p => p.Student)
                 .HasForeignKey<Card>(p => p.StudentId);
