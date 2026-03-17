@@ -19,33 +19,44 @@ namespace EFCore_Practice_Relationships.Data
 
         public DbSet<Studnt> Students { get; set; }
         public DbSet<Passport> Passports { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=mssql-206521-0.cloudclusters.net,10100;Initial Catalog=EntityRel;User ID=mp;Password=Mp123456;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(@"Data Source=mssql-206521-0.cloudclusters.net,10100;Initial Catalog=EntityRel;User ID=mp;Password=Mp123456;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False",
+
+                sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null);
+                });
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Company-Director
+            // Company-Director
             modelBuilder.Entity<Director>()
-                .HasOne(c => c.Company)
-                .WithOne(d => d.Director)
-                .HasForeignKey<Company>(d => d.DirectorId);
+                .HasOne(d => d.Company)
+                .WithOne(c => c.Director)
+                .HasForeignKey<Company>(c => c.DirectorId);
 
             modelBuilder.Entity<Company>()
                 .HasIndex(c => c.DirectorId)
                 .IsUnique();
 
-            //Student-Passport
+            // Student-Passport
             modelBuilder.Entity<Studnt>()
-                .HasOne(p => p.Passport)
-                .WithOne(s => s.Studnt)
-                .HasForeignKey<Passport>(s => s.StudntId);
+                .HasOne(s => s.Passport)
+                .WithOne(p => p.Studnt)
+                .HasForeignKey<Passport>(p => p.StudntId);
 
             modelBuilder.Entity<Passport>()
                 .HasIndex(p => p.StudntId)
                 .IsUnique();
 
-            //Book-Author
+            // Book-Author
             modelBuilder.Entity<Book>()
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Books)
