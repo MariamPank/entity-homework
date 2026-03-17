@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManager", "TaskManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore_Practice_Relationships", "EFCore_Practice_Relationships\EFCore_Practice_Relationships.csproj", "{34C3835E-6668-4025-A254-71C6CCA68034}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAdmin", "SchoolAdmin\SchoolAdmin.csproj", "{8CCCDB03-E9D1-43EC-8A56-09405F0C7CD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{34C3835E-6668-4025-A254-71C6CCA68034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34C3835E-6668-4025-A254-71C6CCA68034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34C3835E-6668-4025-A254-71C6CCA68034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CCCDB03-E9D1-43EC-8A56-09405F0C7CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CCCDB03-E9D1-43EC-8A56-09405F0C7CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CCCDB03-E9D1-43EC-8A56-09405F0C7CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CCCDB03-E9D1-43EC-8A56-09405F0C7CD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
