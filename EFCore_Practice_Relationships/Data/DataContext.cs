@@ -1,4 +1,5 @@
-﻿using EFCore_Practice_Relationships.Models.OneToMany.BookAuthor;
+﻿using EFCore_Practice_Relationships.Models.ManyToMany.StdntCourse;
+using EFCore_Practice_Relationships.Models.OneToMany.BookAuthor;
 using EFCore_Practice_Relationships.Models.OneToOne.CompDirector;
 using EFCore_Practice_Relationships.Models.OneToOne.StudentPass;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,12 @@ namespace EFCore_Practice_Relationships.Data
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+
+
+        public DbSet<Stnt> Studs { get; set; }
+        public DbSet<Crs> Crs { get; set; }
+
+        public DbSet<StntCrs> Studcs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=mssql-206521-0.cloudclusters.net,10100;Initial Catalog=EntityRel;User ID=mp;Password=Mp123456;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False",
@@ -61,6 +68,23 @@ namespace EFCore_Practice_Relationships.Data
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AuthorId);
+
+
+
+            // Student-Course
+
+            modelBuilder.Entity<StntCrs>()
+                .HasKey(sc => new { sc.StntId, sc.CrsId }); 
+            
+            modelBuilder.Entity<StntCrs>()
+                .HasOne(sc => sc.Stnt)
+                .WithMany(s => s.StntCrs)
+                .HasForeignKey(sc => sc.StntId); 
+            
+            modelBuilder.Entity<StntCrs>()
+                .HasOne(sc => sc.Crs)
+                .WithMany(c => c.StntCrs)
+                .HasForeignKey(sc => sc.CrsId); 
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EFCore_Practice_Relationships.Data;
+using EFCore_Practice_Relationships.Models.ManyToMany.StdntCourse;
 using EFCore_Practice_Relationships.Models.OneToMany.BookAuthor;
 using EFCore_Practice_Relationships.Models.OneToOne.CompDirector;
 using EFCore_Practice_Relationships.Models.OneToOne.StudentPass;
@@ -70,6 +71,41 @@ namespace EFCore_Practice_Relationships
             foreach (var book in author.Books)
                 Console.WriteLine($"Book: {book.Name} ({book.Genre})");
 
+
+
+            var st1 = new Stnt { Name = "Mariam", ClassYear = 2025 }; 
+            var st2 = new Stnt { Name = "Nino", ClassYear = 2025 }; 
+            
+            var cr1 = new Crs { CrsName = "Math", CrsDescription = "Basic Mathematics" }; 
+            var cr2 = new Crs { CrsName = "C#", CrsDescription = "Programming Course" }; 
+            _db.AddRange(st1, st2, cr1, cr2); 
+            _db.SaveChanges(); 
+            
+            var sc1 = new StntCrs { StntId = st1.Id, CrsId = cr1.Id }; 
+            var sc2 = new StntCrs { StntId = st1.Id, CrsId = cr2.Id }; 
+            var sc3 = new StntCrs { StntId = st2.Id, CrsId = cr2.Id }; 
+            _db.AddRange(sc1, sc2, sc3); 
+            _db.SaveChanges();
+
+
+            var students = _db.Studs
+                .Include(s => s.StntCrs)
+                .ThenInclude(sc => sc.Crs)
+                .ToList();
+
+            Console.WriteLine("Student Courses:");
+
+            foreach (var st in students)
+            {
+                Console.WriteLine($"Student: {st.Name}");
+
+                foreach (var sc in st.StntCrs)
+                {
+                    Console.WriteLine($"  Course: {sc.Crs.CrsName}");
+                }
+
+                Console.WriteLine();
+            }
         }
     }
 }
