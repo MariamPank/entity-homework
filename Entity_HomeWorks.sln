@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolAdmin", "SchoolAdmin\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetTweet", "TweetTweet\TweetTweet.csproj", "{FF0BBECA-6782-448B-B297-E80A47483A40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMTP_MotivationalEmail", "SMTP_MotivationalEmail\SMTP_MotivationalEmail.csproj", "{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FF0BBECA-6782-448B-B297-E80A47483A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF0BBECA-6782-448B-B297-E80A47483A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF0BBECA-6782-448B-B297-E80A47483A40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
