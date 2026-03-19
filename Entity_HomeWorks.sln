@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetTweet", "TweetTweet\Tw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMTP_MotivationalEmail", "SMTP_MotivationalEmail\SMTP_MotivationalEmail.csproj", "{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory", "Inventory\Inventory.csproj", "{ACBE12CF-23E2-4D41-8D3D-2970A9CA2A4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D607F03-E191-49B7-9C3A-BAAEA166C7EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACBE12CF-23E2-4D41-8D3D-2970A9CA2A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACBE12CF-23E2-4D41-8D3D-2970A9CA2A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACBE12CF-23E2-4D41-8D3D-2970A9CA2A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACBE12CF-23E2-4D41-8D3D-2970A9CA2A4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
